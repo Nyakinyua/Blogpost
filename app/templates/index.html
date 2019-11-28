@@ -1,9 +1,13 @@
 {% extends 'layout.html'%}
 
+</style>
+
 {% block content %}
-    {% for quote in random_quotes%}
+{% for quote in random_quotes%}
+<div id="quote">
     <small>{{quote.id}}</small>
     <p>{{quote.author}}</p>
     <p>{{quote.quote}}</p>
-    {% endfor%}
+</div>
+{% endfor%}
 {% endblock content %}
