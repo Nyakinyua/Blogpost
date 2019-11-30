@@ -2,6 +2,7 @@ from . import db
 from werkzeug.security import generate_password_hash,check_password_hash
 from flask_login import UserMixin
 from . import login_manager
+from datetime import datetime
 
 
 class Quote:
@@ -39,9 +40,57 @@ class User(UserMixin,db.Model):
     def __repr__(self):
         return f'User {self.username}'
     
-
-
-
+class Blog_post(db.Model):
+    __tablename__ = 'blog'
+    
+    id = db.Column(db.Integer,primary_key = True)
+    
+    title = db.Column(db.String)
+    user = db.Column(db.String)
+    blog_content = db.Column(db.String)
+    date_posted = db.Column(db.DateTime,default=datetime.utcnow)
+    
+    
+    def save_blog(self):
+        db.session.add(self)
+        db.session.commit()
+        
+    
+    def delete_blog(self):
+        db.session.delete(self)
+        db.session.commit()
+        
+    @classmethod
+    def get_blog(cls,name):
+        blogs = Blog_post.query.filter_by(user=name).all()
+        return blogs
+    
+    @classmethod
+    def get_all_blog(cls):
+        blog_list = Blog_post.query.all()
+        return blog_list
+    
+    def __repr__(self):
+        return f'Blog_post{self.blog_content}'
+    
+    
+class Comment(db.Model):
+    __tablename__='comments'
+    
+    id = db.Column(db.Integer,primary_key=True)
+    blog_id = db.Column(db.Integer)
+    user = db.Column(db.String)
+    posted = db.Column(db.DateTime,default = datetime.utcnow)
+    blog_content = db.Column(db.String)
+    
+    def __repr__(self):
+        return f"Comment : id:{self.id} comment:{self.blog_content}"
+    
+    def save_comments(self):
+        db.session.add(self)
+        db.session.commit()
+        
+        
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))        

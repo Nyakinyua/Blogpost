@@ -4,7 +4,7 @@
             <img src="https://b.kisscc0.com/20180813/isw/kisscc0-writing-computer-icons-symbol-paper-writer-note-5b71590353d858.4981968715341550113434.png"
                 alt="pitch_it.jpg" style="width: 100px; height: 100px; cursor: pointer;">
         </a>
-        <a class="navbar-brand ml-3" href="/" style="font-size: 60px;font-weight: 900;">Pitches App</a>
+        <a class="navbar-brand ml-3" href="/" style="font-size: 60px;font-weight: 900;">Blog Post</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
             aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -13,32 +13,40 @@
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item active">
                     <a class="nav-link" href="/">Home
-                        
+
                     </a>
-                </li>
+                    <!-- </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{url_for('auth.login')}}">Login</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{url_for('auth.register')}}">Register</a>
-                </li>
+                </li> -->
 
 
         </div>
-        <div class="navbar-nav navbar-right">
-            {% if current_user.is_authenticated %}
-                <li class="nav-item">
-                    <a class="nav-link" href="{{url_for('main.index')}}"style="color: white;font-weight:700;">{{current_user.username}}</a>
-                </li>
-                <img src="{{current_user.image_file}}">
-            <li class="nav-item"><a class="nav-link" href="/pitches/new/">Create Pitch</a></li>
 
-            <li class="nav-item">
-                <a class="nav-link" href="{{url_for('auth.logout')}}">Sign Out</a>
-            </li>
 
-            {% endif %}
-        </div>
-        </ul>
+
+        <!-- <li class="nav-item">
+                <a class="nav-link" href="{{url_for('auth.login')}}">Sign In</a>
+            </li> -->
+
+
+
+    </div>
+    </ul>
+
+    <ul class="nav navbar-nav navbar-right">
+        {% if current_user.is_authenticated %}
+        <li class="nav-item">
+            <a class="nav-link" href="{{url_for('main.index')}}" style="color: white;font-weight:700;">
+                {{current_user.username}}</a>
+        <li><a href="{{url_for('main.profile',uname=current_user.username)}}">Profile</a></li>
+        <li><a href="{{url_for('auth.logout')}}">Sign out</a></li>
+        {% else %}
+        <li><a href="{{url_for('auth.login')}}">Sign in</a></li>
+        {%endif%}
+    </ul>
     </div>
 </nav>
