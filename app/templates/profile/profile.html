@@ -43,12 +43,13 @@
     </div>
 
     {% for blog in bloglist %}
-    <ul>
         
-        <li>{{blog.id}}</li>
-        <li>{{blog.blog_content}}</li>
+        <h3>{{blog.title}}</h3>
+        <h4>{{blog.blog_content}}</h4>
         
-    </ul>
+    
+        <a class="btn btn-outline-danger" href="/delete/{{blog.id}}">Delete</a>
+
     {% endfor %}
 </div>
 {% endblock %}

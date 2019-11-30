@@ -56,6 +56,30 @@ def update_profile(uname):
     return render_template('profile/update.html',form=form)
 
 
+# @main.route('/blog/comment/new/<int:id>', methods = ['GET','POST'])
+# @login_required
+# def new_comment(id):
+#     pitch = Blog_post.query.filter_by(id = id ).first()
+#     form = CommentForm()
+#     if form.validate_on_submit():
+#         comment = form.comment.data
+# ​        new_comment = Comment(pitch_id = pitch.id, comment = comment, user = current_user.username)
+# ​
+#         new_comment.save_comment()
+#         return redirect(url_for('.pitch',id = pitch.id))
+# ​
+#     title = f'{pitch.pitch_title} comment'
+#     return render_template('comment.html',title = title, comment_form = form,pitch = pitch)
+# ​
+# @main.route('/pitch/<id>')
+# @login_required
+# def pitch(id):
+#     pitch = Pitch.query.filter_by(id = id).first()
+# ​
+#     comment = Comment.get_pitch_comment(pitch.id)
+#     return render_template('pitch.html',pitch = pitch, comment = comment)
+
+
 
 @main.route('/delete/<int:id>' ,methods=['GET',"POST"])
 @login_required

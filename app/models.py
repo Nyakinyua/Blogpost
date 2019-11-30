@@ -91,6 +91,33 @@ class Comment(db.Model):
         db.session.commit()
         
         
+    def delete_blog(self):
+        db.session.delete(self)
+        db.session.commit()    
+
+
+class Subscribe(db.Model):
+    '''
+    class defining how users data who have subscribed will be stored
+    '''
+    __tablename="subscribes"
+    id=db.Column(db.Integer,primary_key=True)
+    email=db.Column(db.String(255), unique=True,index=True)
+
+    def save_subscriber(self):
+        '''
+        function that saves a subscriber in the db  
+        '''
+        db.session.add(self)
+        db.session.commit()
+        
+
+    def __repr__(self)  :
+        '''
+        function that helps in debugging.
+        '''
+        return f'Comment {self.body}'        
+        
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))        

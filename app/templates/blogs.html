@@ -3,8 +3,24 @@
 {% block content %}
 
 <div class='container' style="margin-top: 20em;">
+
+    <h2>New Blog Post</h2>
     {{wtf.quick_form(form)}}
 
-    
+
 </div>
 {% endblock %}
+
+{% if comments %}
+{% for comment in comments %}
+<div class="row text-center">
+    <a>
+        <p style="color:black">{{ comment.description }}</p>
+    </a>
+    <small> posted by {{comment.user.username}}</small>
+</div>
+{% endfor %}
+{% else %}
+
+<h3>This post does not does not have any comments yet !</h3>
+{%endif%}
