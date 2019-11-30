@@ -23,3 +23,10 @@ class CommentForm(FlaskForm):
 class UpdateProfile(FlaskForm):
     bio = TextAreaField("Whats New?",validators=[Required()])
     submit = SubmitField("Submit")
+    
+class subscribeForm(FlaskForm):
+      '''
+  class that defines how the subscribe form fields to be filled
+  '''
+  email=StringField('Enter your email address',validators=[Required(),Email()])
+  submit=SubmitField('Subscirbe')
