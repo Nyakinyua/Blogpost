@@ -75,26 +75,31 @@ class Blog_post(db.Model):
     
     
 class Comment(db.Model):
-    __tablename__='comments'
+    __tablename__='comment'
     
     id = db.Column(db.Integer,primary_key=True)
     blog_id = db.Column(db.Integer)
     user = db.Column(db.String)
     posted = db.Column(db.DateTime,default = datetime.utcnow)
     blog_content = db.Column(db.String)
+    description = db.Column(db.Text)
     
-    def __repr__(self):
-        return f"Comment : id:{self.id} comment:{self.blog_content}"
     
     def save_comments(self):
         db.session.add(self)
         db.session.commit()
+        
+    def get_blog_comment(cls,id):
+        comment = Comment.query.filter_by(blog_id=id)
+        return comment
         
         
     def delete_blog(self):
         db.session.delete(self)
         db.session.commit()    
 
+    def __repr__(self):
+        return f"Comment : id:{self.id} comment:{self.desription}"
 
 class Subscribe(db.Model):
     '''

@@ -41,7 +41,7 @@
         </div>
 
     </div>
-
+<div class="card">
     {% for blog in bloglist %}
         
         <h3>{{blog.title}}</h3>
@@ -49,6 +49,7 @@
         
     
         <a class="btn btn-outline-danger" href="/delete/{{blog.id}}">Delete</a>
+    </div>
 
     {% endfor %}
 </div>

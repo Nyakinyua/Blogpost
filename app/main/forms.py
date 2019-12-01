@@ -25,8 +25,16 @@ class UpdateProfile(FlaskForm):
     submit = SubmitField("Submit")
     
 class subscribeForm(FlaskForm):
-      '''
-  class that defines how the subscribe form fields to be filled
-  '''
-  email=StringField('Enter your email address',validators=[Required(),Email()])
-  submit=SubmitField('Subscirbe')
+        '''
+    class that defines how the subscribe form fields to be filled
+    '''
+    email=StringField('Enter your email address',validators=[Required(),Email()])
+    submit=SubmitField('Subscirbe')
+    
+
+  def validate_email(self,data_field):
+    '''
+    function that validates no email duplicates
+    '''
+    if Subscribe.query.filter_by(email=data_field.data).first():
+      raise ValidationError('That Email is taken.Please use another email')
