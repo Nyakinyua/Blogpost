@@ -56,31 +56,7 @@ def update_profile(uname):
     return render_template('profile/update.html',form=form)
 
 
-@main.route('/blog/comment/new/<int:id>', methods = ['GET','POST'])
-@login_required
-def new_comment(id):
-    blog = Blog_post.query.filter_by(id = id ).first()
-    form = CommentForm()
-    if form.validate_on_submit():
-        description = form.description.data
-        
-​        new_comment = Comment(blog_id = blog.id, description = description, user = current_user.username)
-​
-        new_comment.save_comment()
-        return redirect(url_for('.blog',id = blog.id))
-​
-        title = f'{blog.title} comment'
-    return render_template('comment.html',title = title, comment_form = form,blog = blog)
-​
 
-
-@main.route('/blog/<id>')
-@login_required
-def blog(id):
-    blog = Blog_post.query.filter_by(id = id).first()
-​
-    comment = Comment.get_pitch_comment(blog.id)
-    return render_template('blog.html',blog= blog, comment = comment)
 
 
 
