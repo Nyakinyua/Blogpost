@@ -2,8 +2,15 @@
 #### 
 #### By **Nyakinyua Wanjiru**
 ## Description
-{This is a detailed description of your application, including its purpose and usage.  Give as much detail as needed to explain what the application does, and any other information you want users or other developers to have. }
+A web application that showcases various blog posts from different users. Users are able to add new posts and add comments to others posts by different users. They can also delete and edit various posts.
+click to [view]()
 
+## Getting Started
+These instructions will get you a copy of the project up and running on your local machine for development and testing
+.
+`cd test-deploy/`
+activate virtual environment
+`source virtual/bin/activate`
 ## Setup/Installation Requirements
 * Install python and git on your local machine
 

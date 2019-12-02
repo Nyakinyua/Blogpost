@@ -5,39 +5,59 @@
 
 {% block content %}
 <div class="container" style="margin-top: 10em;">
-    <div class='card'>
-{% for quote in random_quotes%}
-<div id="quote">
-    <small>{{quote.id}}</small>
-    <p>{{quote.author}}</p>
-    <p>{{quote.quote}}</p>
-</div>
-{% endfor%}
-</div>
-</div>
-
-<a class="btn btn-outline-success"href="/blog/new/{{current_user.username}}">New Post</a>
-
-
-{% for blog in blogs %}
-        
-<h3><strong>{{blog.title}}</strong></h3>
-<h4>{{blog.blog_content}}</h4>
-
-
-<a class="btn btn-outline-danger" href="/delete/{{blog.id}}">Delete</a>
-
-{% endfor %}
-
-
-
-<!-- subcriber -->
-<div class="card" style="width: 20rem;" id="subcribeform">
-    <div class="card-body">
-    <h5 class="card-title">Subscribe to our Blog</h5>
-    {{wtf.quick_form(subscriber_form)}}
-    
+    {% for quote in random_quotes%}
+    <div class="card">
+        <div class="card-body">
+            <div id="quote">
+                <p>{{quote.author}}</p>
+                <p>{{quote.quote}}</p>
+            </div>
+        </div>
     </div>
+    {% endfor%}
+
+</div>
+
+
+
+<div class="container">
+    <div class="row" style='margin-bottom: 8px;'>
+        <div class="col-md-8">
+            <div class="card-deck">
+                {% for blog in blogs %}
+                <div class='col-md-12' style='margin-bottom: 30px;'>
+                    <div class=card>
+                        <div class="card-title">
+                            <h3><strong><u>{{blog.title}}</u></strong></h3>
+                        </div>
+                        <div class="card-body">
+                            <h4>{{blog.blog_content}}</h4>
+                        </div>
+                        <div class="card-footer">
+                            <a class="btn btn-outline-danger" href="/delete/{{blog.id}}">Delete</a>
+                        </div>
+                    </div>
+
+
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="col-md-4">
+            <!-- subcriber -->
+            <div class="card" style="width: 20rem;" id="subcribeform">
+                <div class="card-body">
+                    <h5 class="card-title">Subscribe to our Blog</h5>
+                    {{wtf.quick_form(subscriber_form)}}
+
+                </div>
+            </div>
+        </div>
     </div>
+</div>
+
+
+
+
 
 {% endblock content %}

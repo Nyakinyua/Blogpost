@@ -18,12 +18,13 @@ def index():
     title = "Home- Nyakinyua Blog post"
     #Getting blogs from all users
     blogs = Blog_post.get_all_blog()
-    
     form = SubscribeForm()
     if form.validate_on_submit():
         email = form.email.data
+        
         new_subscriber=Subscribe(email=email)
         new_subscriber.save_subscriber()
+        
         mail_message("Subscribed to Nyakinyua Blog post","email/welcome_subscriber",new_subscriber.email,subscriber=new_subscriber)
     
     return render_template('index.html',title=title,random_quotes=random_quotes, blogs=blogs, subscriber_form=form) 
@@ -103,22 +104,41 @@ def new_blog(uname):
         db.session.add(new_blog)
         db.session.commit()
         
+        subscribers= Subscribe.query.all()
+        
+        for subscriber in subscribers:
+            mail_message("New Blog Post","email/new_blog",subscriber.email,user =user)
+        
         return redirect(url_for('.profile',uname=user.username))    
     title = 'new blog'
     
     return render_template('blogs.html',form = form,title=title)
         
-        
+
+@main.route('/comment/<int:id>' , methods = ['GET' , 'POST'])
+def comment(id):
+    form = CommentForm()
+    comment = Comment.get_blog_comment(blog_id = id)
+    if form.validate_on_submit():
+        comment = form.comment.data
+        new_comment = Comments(comment = comment,user = current_user.username,blog_id = id)
+        new_comment.save_comments()
+        return redirect(url_for('.comment',id = id ))
+    return render_template('comment.html',commentForm = form,comment = comment)
+   
 
 @main.route('/subscribe', methods=['GET','POST'])
+@login_required
 def subscriber():
     subscriber=SubscribeForm()
     if subscriber_form.validate_on_submit():
          
         subscriber= Subscriber(email=subscriber_form.email.data,name = subscriber_form.name.data)
         
+        
         db.session.add(subscriber)
         db.session.commit()
+       
         
         mail_message("Hello Welcome To Blog World!","email/welcome_subscriber",subscriber.email,subscriber=subscriber)
     subscriber = Blog_post.query.all()

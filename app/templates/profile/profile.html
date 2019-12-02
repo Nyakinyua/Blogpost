@@ -6,7 +6,7 @@
 <div class="container">
     <div class="row" style="margin-top:10em;">
         <!-- Displaying profile/username -->
-        <div class="col-md-4">
+        <div class="col-md-6">
             <h3>{{user.username | capitalize }}</h3>
 
             <!-- Displaying user bio -->
@@ -20,7 +20,7 @@
         </div>
 
         <!--Displaying profile picture-->
-        <div class="col-md-4">
+        
             {% if user.profile_pic_path %}
 
             <img src="{{url_for('static',filename=user.profile_pic_path)}}" alt="" class="img-thumbnail">
@@ -40,50 +40,27 @@
             {% endif %}
         </div>
 
-    </div>
-<div class="card">
-    {% for blog in bloglist %}
-        
-        <h3>{{blog.title}}</h3>
-        <h4>{{blog.blog_content}}</h4>
-        
-    
-       
-    </div>
-    <a class="btn btn-outline-danger" href="/delete/{{blog.id}}">Delete</a>
 
-    {% endfor %}
+        <div class="card">
+            {% for blog in bloglist %}
+
+            <h3>{{blog.title}}</h3>
+            <h4>{{blog.blog_content}}</h4>
+
+
+
+        </div>
+        <a class="btn btn-outline-danger" href="/delete/{{blog.id}}">Delete</a>
+
+        {% endfor %}
+    </div>
+   
+    <div class="col-md-4">
+        <a href="{{url_for('main.update_profile',uname = user.username)}}">Update profile</a>
+    </div>
 </div>
-{% endblock %}
-    
-{% block profile %}
-<div class="container">
-    <div class="row" >
-        <!-- displaying  Username-->
-        <div class="col-md-4">
-            <h3> {{user.username| capitalize}} </h3>
-
-            <!--Displaying user bio-->
-            {% if user.bio %}
-            <p> {{user.bio}}</p>
-            {%else%}
-            <p> {{user.username| capitalize}} has no bio </p>
-            {% endif %}
-        </div>
-
-        <!--Display profile photo-->
-        <div class="col-md-4">
-            {% if user.profile_pic_path %}
-            <img src="{{url_for('static',filename=user.profile_pic_path)}}" alt="" class="img-thumbnail">
-            {%else%}
-            <p>No profile picture</p>
-            {% endif %}
-        </div>
-        <div class="col-md-4">
-            <a href="{{url_for('main.update_profile',uname = user.username)}}">Update profile</a>
-        </div>
-    </div>
 </div>
 {% endblock %}
 </body>
+
 </html>
