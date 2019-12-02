@@ -7,10 +7,12 @@ click to [view]()
 
 ## Getting Started
 These instructions will get you a copy of the project up and running on your local machine for development and testing
-.
+`git clone 
 `cd test-deploy/`
 activate virtual environment
 `source virtual/bin/activate`
+run the application
+
 ## Setup/Installation Requirements
 * Install python and git on your local machine
 
