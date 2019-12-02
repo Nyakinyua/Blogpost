@@ -2,24 +2,31 @@ from . import main
 from ..requests import get_quotes
 from flask import render_template, request, redirect, url_for,abort
 from flask_login import login_required,current_user
-from ..models import User,Blog_post,Comment
-from .forms import UpdateProfile, BlogForm
+from ..models import User,Blog_post,Comment,Subscribe
+from .forms import UpdateProfile, BlogForm,SubscribeForm,CommentForm
 from .. import db,photos
+from ..email import mail_message
 
-@main.route('/')
+@main.route('/', methods=['GET','POST'])
 def index():
-    
     '''
     View root page function that returns the index page and its data
     '''
-    
     #Getting random Quotes
     random_quotes=get_quotes()
     print(random_quotes)
     title = "Home- Nyakinyua Blog post"
+    #Getting blogs from all users
     blogs = Blog_post.get_all_blog()
     
-    return render_template('index.html',title=title,random_quotes=random_quotes, blogs=blogs) 
+    form = SubscribeForm()
+    if form.validate_on_submit():
+        email = form.email.data
+        new_subscriber=Subscribe(email=email)
+        new_subscriber.save_subscriber()
+        mail_message("Subscribed to Nyakinyua Blog post","email/welcome_subscriber",new_subscriber.email,subscriber=new_subscriber)
+    
+    return render_template('index.html',title=title,random_quotes=random_quotes, blogs=blogs, subscriber_form=form) 
 
 
 

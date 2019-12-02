@@ -40,9 +40,9 @@ class SubscribeForm(FlaskForm):
     submit=SubmitField('Subscirbe')
     
 
-def validate_email(self,data_field):
-    '''
-    function that validates no email duplicates
-    '''
-    if Subscribe.query.filter_by(email=data_field.data).first():
-      raise ValidationError('That Email is taken.Please use another email')
+    def validate_email(self,data_field):
+        '''
+        function that validates no email duplicates
+        '''
+        if Subscribe.query.filter_by(email=data_field.data).first():
+            raise ValidationError('That Email is taken.Please use another email')
