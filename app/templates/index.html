@@ -16,12 +16,12 @@
 <a class="btn btn-outline-success"href="/blog/new/{{current_user.username}}">New Post</a>
 
 
-{% for blog in allblogs %}
+{% for blog in blogs %}
         
-<h3>{{blog.title}}</h3>
-<h4>{{blog.blog_content}}</4>
+<h3><strong>{{blog.title}}</strong></h3>
+<h4>{{blog.blog_content}}</h4>
 
-<a href="{{url_for('main.new_comment',blog_id = category.id)}}" class="btn btn-outline-info"> Add a comment</a>
+
 <a class="btn btn-outline-danger" href="/delete/{{blog.id}}">Delete</a>
 
 {% endfor %}

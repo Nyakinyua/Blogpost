@@ -29,7 +29,7 @@ class UpdateProfile(FlaskForm):
     bio = TextAreaField("Whats New?",validators=[Required()])
     submit = SubmitField("Submit")
     
-class subscribeForm(FlaskForm):
+class SubscribeForm(FlaskForm):
     
     
     '''
