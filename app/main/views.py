@@ -87,11 +87,11 @@ def new_blog(uname):
     form = BlogForm()
     if form.validate_on_submit():
         title = form.title.data
-        
+        category=form.category.data
         blog_content = form.blog_post.data
         
-        new_blog = Blog_post(user =current_user.username, title= title, blog_content=blog_content)
-        
+        new_blog = Blog_post(user =current_user.username, title= title, blog_content=blog_content,category=category)
+        category = form.category.data
         db.session.add(new_blog)
         db.session.commit()
         

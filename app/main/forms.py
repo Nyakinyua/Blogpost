@@ -1,23 +1,27 @@
 from flask_wtf import FlaskForm
 from wtforms.validators import Required,Email
 from wtforms import SubmitField,TextAreaField
-from wtforms import StringField,PasswordField,SubmitField,BooleanField,SubmitField,TextAreaField
+from wtforms import StringField,PasswordField,SubmitField,BooleanField,SubmitField,TextAreaField,SelectField
 from wtforms import ValidationError
 from ..models import Subscribe
 
 
 class BlogForm(FlaskForm):
-    category=SelectField(u'Enter Blog Category', choices =[('Lifestyle Blogs','Lifestyle Blogs'),('Entertainment Blogs','Entertainment Blogs'),('Education Blogs','Education Blogs'),('Religious Blogs','Religious Blogs'),('Political Blogs','Political Blogs'),('Fashion Blogs','Fashion Blogs')]
+    '''
+    Class that defines the various fields in the blog form
+    '''
+    category=SelectField('Enter Blog Category', choices =[('Lifestyle Blogs','Lifestyle Blogs'),('Entertainment Blogs','Entertainment Blogs'),('Education Blogs','Education Blogs'),('Religious Blogs','Religious Blogs'),('Political Blogs','Political Blogs'),('Fashion Blogs','Fashion Blogs')])
     title = StringField('Title',validators=[Required()])
     blog_post = TextAreaField('Post',validators=[Required()])
-    submit = SubmitField('submit')
+    submit = SubmitField('Post')
 
 
 
 
 class CommentForm(FlaskForm):
+    
 	description = TextAreaField('Add comment',validators=[Required()])
-	submit = SubmitField()
+	submit = SubmitField('Add comment')
 
 
 

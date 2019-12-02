@@ -49,7 +49,7 @@ class Blog_post(db.Model):
     user = db.Column(db.String)
     blog_content = db.Column(db.String)
     date_posted = db.Column(db.DateTime,default=datetime.utcnow)
-    
+    category = db.Column(db.String)
     
     def save_blog(self):
         db.session.add(self)
