@@ -48,6 +48,7 @@
                         </div>
                         <div class="card-body">
                             <h4>{{blog.blog_content}}</h4>
+                            <footer class="footer"> Posted by {{blog.user}} on {{blog.date_posted}}</footer>
                             <a class="btn btn-outline-primary" href="/delete/{{blog.id}}">View</a>
                             <a class='btn btn-outline-success' href='/comment/{{blog.id}}'>Comment</a>
                         </div>
