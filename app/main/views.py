@@ -118,10 +118,10 @@ def new_blog(uname):
 @main.route('/comment/<int:id>' , methods = ['GET' , 'POST'])
 def comment(id):
     form = CommentForm()
-    comment = Comment.get_blog_comment(blog_id = id)
+    comment = Comment.get_blog_comment(id)
     if form.validate_on_submit():
-        comment = form.comment.data
-        new_comment = Comments(comment = comment,user = current_user.username,blog_id = id)
+        comment = form.description.data
+        new_comment = Comment(comment = comment,user = current_user.username,blog_id = id)
         new_comment.save_comments()
         return redirect(url_for('.comment',id = id ))
     return render_template('comment.html',commentForm = form,comment = comment)

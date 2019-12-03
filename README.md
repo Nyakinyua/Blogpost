@@ -7,16 +7,16 @@ click to [view]()
 
 ## Getting Started
 These instructions will get you a copy of the project up and running on your local machine for development and testing
-`git clone 
-`cd test-deploy/`
+`git clone https://github.com/Nyakinyua/Blogpost.git'`
+
+`cd Blogpost/`
+
 activate virtual environment
 `source virtual/bin/activate`
 run the application
 
 ## Setup/Installation Requirements
 * Install python and git on your local machine
-
-* Git clone the repo https://github.com/Nyakinyua/Blogpost.git
 
 * Navigate to the cloned repo. Open terminal an run (pip install -r requirements.txt ) to install all dependencies
 
@@ -28,7 +28,7 @@ run the application
 
 
 ## Known Bugs
-
+Delete button only works when a user who created the post deletes it themselves
 
 ## Technologies Used
 * Python3.6
@@ -36,6 +36,7 @@ run the application
 * Html
 * CSS
 * Bootstrap
+* postgresql
 
 ## Support and contact details
  In case You have any contributions and add ons to this application or any issues using this code please feel free to get in touch with me on email wanyakinyua968@gmail.com

@@ -88,7 +88,8 @@ class Comment(db.Model):
     def save_comments(self):
         db.session.add(self)
         db.session.commit()
-        
+    
+    @classmethod    
     def get_blog_comment(cls,id):
         comment = Comment.query.filter_by(blog_id=id)
         return comment
